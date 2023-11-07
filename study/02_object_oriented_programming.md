@@ -368,7 +368,9 @@ Customer(String name, int age) 생성자 호출
 ```
 
 ## this() constructor
-
+- 하나의 클래스에 정의된 다수의 생성자 간에 this() 생성자를 통해 호출이 가능하다.
+- this() 생성자는 중복되는 코드를 제거하고 생성자를 재사용하기 위해 사용한다.
+- this() 생성자의 호출은 반드시 생성자 이름의 바로 아래의 위치해야 한다.
 ```java
 class Employee {
 
@@ -402,6 +404,13 @@ public class Test {
 Employee(id) 호출
 Employee(id, name) 호출
 ```
+
+## Java 메모리 모델
+### Java의 JVM이 관리하는 메모리 공강은 크게 3가지 영역으로 나눌 수 있다.
+- 스태틱 영역(Static Area) 또는 메소드 영역 : 메소드의 바이트 코드, static 변수가 할당 된다.(Stack Frame에 저장됨.)
+- 스택 영역(Stack Area) : 지역 변수(Local Variable), 매개 변수(Parameter)가 할당되는 영역으로 초기화가 진행되지 않는다.
+- 힙 영역(Heap Area) : 배열과 모든 인스턴스 객체가 할당되는 영역으로 자동 초기화가 진행된다.
+- Static Data 세그먼트, Code 세그먼트
 
 ### Reference
 
