@@ -1,18 +1,18 @@
 # 자바 기초 강의 - 2-1강 객체지향 프로그래밍의 이해
 
-## 2.1 객체지향 프로그래밍
+## 객체지향 프로그래밍
 - 프로그래밍 언어의 패러다임을 이해하는 과정은 해당 프로그램 언어를 익히고 사용하는데 매우 중요한 절차이다.
 - 프로그래밍은 현실 세계의 특정 문제를 컴퓨터 세계를 통해 풀어가는 방법이라고 할 수 있다.
 - 현실 세계의 문제를 기능 또는 구조위주의 관점으로 보고, 기능을 세분화하여 풀어가는 것을 절차지향이라고 한다.
 - 객체지향은 문제를 데이터의 관점으로 보며, 데이터들의 상화 관계를 정의함으로써 해결함책을 찾아간다.
 
-## 2.2 클래스(Class) 그리고 객체(Object)
+## 클래스(Class) 그리고 객체(Object)
 - 자바 언어로 구현하는 프로그램은 다수의 클래스들로 이루어지며 이 클래스를 이용해 객체를 만들고 사용한다.
 - 클래스를 정의한다는 것은 객체를 만들기 위한 과정이며 클래스는 객체에 대한 청사진 또는 템플릿이라 할 수 있다.
 - 클래스로부터 만들어지는 객체를 인스턴스(instance) 혹은 인스턴스 객체(instance object)라고 한다.
 
 
-## 2.3 클래스의 구성요소 
+## 클래스의 구성요소 
 - 자바 프로그램의 기본인 클래스를 잘 정의하기 위해서는 클래스를 구성요소에 대한 이해가 필요하다.
 - 클래스는 상태와 행위를 가지며 상태를 필드(Field), 행위를 메소드(Method)라고 한다.
 - 클래스에는 필드와 메소드 외에 생성자(Constructor)라는 특수한 메소드도 반드시 하나 이상 갖는다.
@@ -198,6 +198,212 @@ int i1 = 20.5; // Error
 int i2 = (int) 20.5; // 20
 ```
 
+# 2.6 메소드(Method) 정의
+
+## 메소드 구성 및 정의
+- 클래스를 구성하는 구성요소에서 해당 클래스의 행위를 의미하는 것이 메소드(Method)이다.
+- 필드와 마찬가지로 메소드르에도 접근 지정자를 지정하여 메소드를 호출에 대한 범위를 정할 수 있다.
+- 메소드는 static 키워드를 이용해 클래스 메소드와 인스턴스 메소드로 정의할 수 있다.
+-
+![](https://github.com/dididiri1/java_basic/blob/main/study/images/02_04.png?raw=true)
+
+
+## 오버로딩(Overloading)
+- 메소드의 이름을 같게 하고, 파라미터를 달리 하여 여러 메소드를 정의하는 방법을 오버로딩이라고 한다.
+- 오버로딩은 하나의 클래스내에서의 기능이며 파라미터는 타입, 순서, 개수를 달리하여 구분할 수 있어야 한다.
+
+```java
+class Calculator {
+
+    public int sum(int x, int y){
+        return x + y;
+    }
+    
+    public int sum(int x, int y, int z){
+        return x + y + z;
+    }
+    
+    public double sum(double x, double y){
+        return x + y;
+    }
+}
+
+public class OverloadingExam {
+
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        System.out.println(calc.sum(10, 20)); 
+        System.out.println(calc.sum(10, 20, 30)); 
+        System.out.println(calc.sum(10.0, 20.0));
+    }
+}
+``` 
+``` console
+30
+60
+30.0
+``` 
+
+##  생성자(Constructor)
+- 생성자(Constructor)는 클래스 구성요소 중 하나로, 객체를 인스턴스화 할 때 가장 먼저 호출되는 메소드이다.
+- 생성자의 역할은 객체가 갖는 필드의 초기화이며 따라서 모든 클래스는 하나 이상의 생성자를 갖는다.
+- 생성자의 이름은 해당 클래스의 이름과 같고 반환 타입은 갖지 않는다.
+- 생성자도 모든 접근제어자를 적용할 수 있으며 일반적으로는 public 접근제어자가 이다.
+
+```java
+class Employee {
+    
+    private String name;
+    private String department;
+
+    public Employee(){
+        System.out.println("Employee() 호출");
+    }
+
+    public Employee(String name){
+        this.name = name;
+    }
+}
+
+public class ConstructorExam {
+
+    public static void main(String[] args) {
+        Employee employee = new Employee();
+    }
+}
+
+```
+
+## 디폴트 생성자 (Default Constructor)
+- 매개 변수가 없고 구현 내용 없이 정의하는 생성자를 기본 생성자 혹은 디폴트 생성자(Default Constructor)라고 한다.
+- 클래스는 반드시 하나 이상의 생성자를 가지며 사용자가 생성자를 정의하지 않으면 디폴트 생성자가 자동으로 생성된다.
+- 생성자에서 명시적으로 필ㄷ의 값을 설정하지 않으면 디폴트 값으로 초기화 된다.
+
+```java
+class Student {
+
+    private String name;
+}
+
+class Employee {
+
+    private String name;
+
+    public Employee(String name){
+        this.name = name;
+    }
+}
+
+public class ConstructorExam {
+
+    public static void main(String[] args) {
+        Student student = new Student();
+        Employee employee = new Employee(); // compile Error
+    }
+}
+```
+> 참고: Employee 클래스에 디폴트 생성자가 없어 컴파일 에러가 발생한다.
+
+## 사용자 정의 생성자(User Defined Constructor)
+- 클래스 필드의 초기화를 위해서 정의하는 생성자를 사용자 정의 생성자(User Defined Constructor)라 한다.
+- 사용자 정의 생성자는 해당 클래스가 갖는 필드의 초기화를 위해 정의하며 여러 형태로 정의가 가능한다.
+- 만일, 사용자가 하나 이상의 사용자 정의 생성자를 만들었다면 **디폴트 생성자**는 자동으로 생성되지 않음!
+
+```java
+public class Student {
+    
+    private int id;
+    private String name;
+    
+    public Student(int id) { // User Defined Constructor
+        this.id = id;
+    }
+    
+    public Student(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+}
+```
+
+## 생성자 오버로딩(Constructor Overloading)
+- 클래스 필드의 초기화하는 다양한 방식으로 이루어질 수 있으며 이를 위해 다양한 형태의 생성자를 정의할 수 있따.
+- 생성자의 이름은 반드시 클래스의 이름과 동일해야 하기 떄문에, 다수의 생성자 정의는 생성자 오버로딩으로 정의한다.
+- 생성자 오버로딩은 해당 클래스를 구성하는 생성자들의 매개변수 개수와 타입, 순서를 달리하여 정의한다.
+- 객체의 인스턴스화 과정에서 생성자를 호출하여 이때 전달인자를 다르게 하여 필요한 생성자를 호출한다.
+
+```java
+class Customer {
+
+    private String name;
+    
+    private int age;
+
+    public Customer() {
+        System.out.println("Customer() 생성자 호출");
+    }
+    public Customer(String name) {
+        System.out.println("Customer(String name) 생성자 호출");
+    }
+    public Customer(String name, int age){
+        System.out.println("Customer(String name, int age) 생성자 호출");
+    }
+}
+
+public class Test {
+    
+  public static void main(String[] args) {
+      Customer customer1 = new Customer();
+      Customer customer2 = new Customer("춘식이");
+      Customer customer3 = new Customer("라이엇", 23);
+  }
+  
+}
+```
+
+``` console
+Customer() 생성자 호출
+Customer(String name) 생성자 호출
+Customer(String name, int age) 생성자 호출
+```
+
+## this() constructor
+
+```java
+class Employee {
+
+    private String id;
+    private String name;
+  
+    public Employee() {}
+  
+    public Employee(String id){
+        this.id = id;
+        System.out.println("Employee(id) 호출");
+    }
+  
+    public Employee(String id, String name){
+        this(id);
+        this.name = name;
+        System.out.println("Employee(id, name) 호출");
+    }
+}
+
+public class Test {
+    
+    public static void main(String[] args) {
+        Employee employee = new Employee("001", "춘식이");
+    }
+}
+
+```
+
+``` console
+Employee(id) 호출
+Employee(id, name) 호출
+```
+
 ### Reference
 
 - [자바 기초 - 나무소리](https://www.youtube.com/@namoosori/playlists)
+

@@ -35,3 +35,7 @@ public class Ex01 {
 - 다수의 디폴트 메소드를 갖는 인터페이스라도 추상 메소드가 하나라면 함수형 인터페이스 이다.
 - 함수형 인터페이스를 정의 할 때 @FunctionalUnterface 어노테이션을 이용해 컴파일 검사를 진행할 수 있다.
 - 함수형 인터페이스의 추상메소드 시그니처를 함수 디스크립터(Function descriptor)라고 한다.
+
+### Reference
+
+- [자바 기초 - 나무소리](https://www.youtube.com/@namoosori/playlists)

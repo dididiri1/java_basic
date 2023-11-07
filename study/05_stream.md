@@ -508,3 +508,7 @@ Choi
 | noneMatch | 파라미터로 전달되는 람다식 기준으로 스트림 데이터가 모두 일치하지 않는지 확인 |
 | findFirst | 스트림 데이터 중에서 가장 첫번째 데이터를 반환                  |
 |  reduce   | 스트림 데이터 중에서 임의의 데이터를 반환                     |
+
+### Reference
+
+- [자바 기초 - 나무소리](https://www.youtube.com/@namoosori/playlists)
