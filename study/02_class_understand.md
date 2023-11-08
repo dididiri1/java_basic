@@ -1,4 +1,12 @@
-# 자바 기초 강의 - 2-1강 객체지향 프로그래밍의 이해
+# 클래스의 이해
+- 2.1 객체지향 프로그래밍
+- 2.2 클래스 그리고 객체
+- 2.3 클래스의 구성요소
+- 2.4 필드(Field)의 정의
+- 2.5 연산자(Operatiors)의 이해
+- 2.6 메소드(Method)의 정의
+- 2.7 생성자(Constructor)의 정의
+
 
 ## 객체지향 프로그래밍
 - 프로그래밍 언어의 패러다임을 이해하는 과정은 해당 프로그램 언어를 익히고 사용하는데 매우 중요한 절차이다.
@@ -251,16 +259,16 @@ public class OverloadingExam {
 - 생성자도 모든 접근제어자를 적용할 수 있으며 일반적으로는 public 접근제어자가 이다.
 
 ```java
-class Employee {
+class exam01.Employee {
     
     private String name;
     private String department;
 
-    public Employee(){
-        System.out.println("Employee() 호출");
+    public exam01.Employee(){
+        System.out.println("exam01.Employee() 호출");
     }
 
-    public Employee(String name){
+    public exam01.Employee(String name){
         this.name = name;
     }
 }
@@ -268,7 +276,7 @@ class Employee {
 public class ConstructorExam {
 
     public static void main(String[] args) {
-        Employee employee = new Employee();
+        exam01.Employee employee = new exam01.Employee();
     }
 }
 
@@ -285,11 +293,11 @@ class Student {
     private String name;
 }
 
-class Employee {
+class exam01.Employee {
 
     private String name;
 
-    public Employee(String name){
+    public exam01.Employee(String name){
         this.name = name;
     }
 }
@@ -298,11 +306,11 @@ public class ConstructorExam {
 
     public static void main(String[] args) {
         Student student = new Student();
-        Employee employee = new Employee(); // compile Error
+        exam01.Employee employee = new exam01.Employee(); // compile Error
     }
 }
 ```
-> 참고: Employee 클래스에 디폴트 생성자가 없어 컴파일 에러가 발생한다.
+> 참고: exam01.Employee 클래스에 디폴트 생성자가 없어 컴파일 에러가 발생한다.
 
 ## 사용자 정의 생성자(User Defined Constructor)
 - 클래스 필드의 초기화를 위해서 정의하는 생성자를 사용자 정의 생성자(User Defined Constructor)라 한다.
@@ -372,37 +380,37 @@ Customer(String name, int age) 생성자 호출
 - this() 생성자는 중복되는 코드를 제거하고 생성자를 재사용하기 위해 사용한다.
 - this() 생성자의 호출은 반드시 생성자 이름의 바로 아래의 위치해야 한다.
 ```java
-class Employee {
+class exam01.Employee {
 
     private String id;
     private String name;
   
-    public Employee() {}
+    public exam01.Employee() {}
   
-    public Employee(String id){
+    public exam01.Employee(String id){
         this.id = id;
-        System.out.println("Employee(id) 호출");
+        System.out.println("exam01.Employee(id) 호출");
     }
   
-    public Employee(String id, String name){
+    public exam01.Employee(String id, String name){
         this(id);
         this.name = name;
-        System.out.println("Employee(id, name) 호출");
+        System.out.println("exam01.Employee(id, name) 호출");
     }
 }
 
 public class Test {
     
     public static void main(String[] args) {
-        Employee employee = new Employee("001", "춘식이");
+        exam01.Employee employee = new exam01.Employee("001", "춘식이");
     }
 }
 
 ```
 
 ``` console
-Employee(id) 호출
-Employee(id, name) 호출
+exam01.Employee(id) 호출
+exam01.Employee(id, name) 호출
 ```
 
 ## Java 메모리 구조
@@ -510,10 +518,10 @@ public final class Math {
 - 정적 메소드는 인스턴스 필드에는 접근할 수 없고, 정적 필드에만 접근할 수 있다.
 - 정적 메소드는 객체를 통해 사용될 수 있지만, 반드시 클래스명과 함께 사용해야 한다.
 #### 정적 메소드 예시
-- Employee 클래스의 정적필드
+- exam01.Employee 클래스의 정적필드
 
 ```java
-public class Employee {
+public class exam01.Employee {
 
     private static int nextId = 1;
     private int id;
@@ -528,7 +536,7 @@ public class Employee {
 public class Test {
 
     public static void main(String[] args) {
-        int nextId = Employee.getNextId();
+        int nextId = exam01.Employee.getNextId();
         System.out.println(nextId);
     }
 }
@@ -536,7 +544,7 @@ public class Test {
 
 #### 정적 메소드는 언제 사용할까?
 - 객체의 상태에 접근하지 않고, 필요한 파리미터가 모두 명시적 파리미터인 경우 (예: Math.pow)
-- 클래스의 **정적 필드**에만 접근하는 경우 (예: Employee.getNextId())
+- 클래스의 **정적 필드**에만 접근하는 경우 (예: exam01.Employee.getNextId())
 
 ```java
 public class StaticExam {
