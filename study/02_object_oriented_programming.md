@@ -405,12 +405,162 @@ Employee(id) 호출
 Employee(id, name) 호출
 ```
 
-## Java 메모리 모델
+## Java 메모리 구조
 ### Java의 JVM이 관리하는 메모리 공강은 크게 3가지 영역으로 나눌 수 있다.
 - 스태틱 영역(Static Area) 또는 메소드 영역 : 메소드의 바이트 코드, static 변수가 할당 된다.(Stack Frame에 저장됨.)
 - 스택 영역(Stack Area) : 지역 변수(Local Variable), 매개 변수(Parameter)가 할당되는 영역으로 초기화가 진행되지 않는다.
 - 힙 영역(Heap Area) : 배열과 모든 인스턴스 객체가 할당되는 영역으로 자동 초기화가 진행된다.
 - Static Data 세그먼트, Code 세그먼트
+
+## static과 final
+- static과 final 키워드는 클래스, 필드, 메소드에 적용할 수 있는 키워드이며 각 위치에 따라 다른 의미를 갖는다.
+- static 키워드는 정적 키워드로 정적 필드, 정적 메소드를 선언할 떄 사용한다.
+- final 키워드를 필드에 정의할 경우 초기 한번의 초기화만 가능하여 이후에는 다른 값을 대입할 수 없다.
+- static, final 키워드가 어느 위치에 있느냐에 따라 그 기능이 다른 만큼 정확히 이해하고 사용해야 한다.
+
+```java
+public class StaticExam {
+    private static String message;
+
+    static {
+        message = "Public Message~~";
+    }
+
+    public static void showMessage() {
+        System.out.println(message);
+    }
+}
+```
+
+```java
+public class FinalExam {
+    
+    private final String message;
+  
+    public FinalExam() {
+        this.message = "Final Message";
+    }
+  
+    public final void showMessage() {
+        System.out.println(message);
+    }
+  
+    public void showMessage(final String message) {
+        //message = "New Message!";
+        //Cannot assign a value to final variable 'message'
+        System.out.println(message);
+    }
+}
+```
+
+### final
+- final 키워드는 클래스, 필드, 메소드, 지역변수, 파라미터에 적용할 수 있다.
+- 클래스에 final은 상속을 허용하지 않으며 메소드의 final은 오버라이딩(overriding) 금지를 의미함.
+- 필드, 지역변수, 파리미터에 final을 적용하면 한번 초기화 한 이후에는 다른 값으로 변경할 수 없다.
+- final 필드의 초기화 방식은 필드 선언 시점의 초기화, 초기화 블록, 생성자를 통한 초기화 방법 3가지가 있다.
+
+```java
+public class FinalExam {
+    
+    private final String message = "Final Message"; // 필드 선언 시점의 초기화(1)
+    {
+        message = "Final Message"; // 초기화 블록(2)
+    }  
+  
+    public FinalExam() {
+        this.message = "Final Message"; // 생성자를 통한 초기화(3)
+    }
+
+    public final void showMessage() {
+        System.out.println(message);
+    }
+
+    public void showMessage(final String message) {
+        //message = "New Message!";
+        //Cannot assign a value to final variable 'message'
+        System.out.println(message);
+    }
+}
+```
+> 참고: 초기화는 한번만 가능하며 초기화 방법 3가지 있다.    
+> 초기화 한번 했다면 다시 초기화하면 에러가 발생.
+
+### static field
+- static 키워드가 적용된 필드를 정적 필드 혹은 클래스 변수라고 한다.
+- 전적 필드는 해당 클래스의 모든 인스턴스 객체들이 공유하는 변수이며 이런 의미가 바로 클래스 변수이다.
+- 정적 필드는 객체의 인스턴스화(생성) 없이 클래스 이름으로 정적 필드에 접근할 수 있다.
+  - 단, 해당 정적 필드의 접근지정자가 무엇인지에 따라 접근 방식에 차이가 있다.
+
+### 사용자 정의 상수
+- 전적 필드에 final 키워드를 적용하여 값을 변경할 수 없도록 하는 것으로 사용자 정의 상수를 정의할 수 있다.
+- 사용자 정의 상수는 정적 필드나 메소드의 접근과 마찬가지로 클래스 이름을 통해 접근하여 사용한다.
+- 사용자 정의 상수는 접근 지정자의 범위에 따라 공유하는 범위가 결정된다.
+
+#### Math.PI
+``` java
+public final class Math {
+    . . .
+    public static final double PI = 3.141592653589793;
+    . . .
+}
+```
+
+### static method 
+#### 정적 메소드는 static으로 선언된 메소드로써 인스턴스 없이도 호출할 수 있다.
+- 정적 메소드는 인스턴스 필드에는 접근할 수 없고, 정적 필드에만 접근할 수 있다.
+- 정적 메소드는 객체를 통해 사용될 수 있지만, 반드시 클래스명과 함께 사용해야 한다.
+#### 정적 메소드 예시
+- Employee 클래스의 정적필드
+
+```java
+public class Employee {
+
+    private static int nextId = 1;
+    private int id;
+
+    public static int getNextId() {
+        return nextId;
+    }
+}
+``` 
+
+```java
+public class Test {
+
+    public static void main(String[] args) {
+        int nextId = Employee.getNextId();
+        System.out.println(nextId);
+    }
+}
+``` 
+
+#### 정적 메소드는 언제 사용할까?
+- 객체의 상태에 접근하지 않고, 필요한 파리미터가 모두 명시적 파리미터인 경우 (예: Math.pow)
+- 클래스의 **정적 필드**에만 접근하는 경우 (예: Employee.getNextId())
+
+```java
+public class StaticExam {
+    
+    private static String staticMessage = "Static Message";
+
+    private String instanceMessage = "Instance Message";
+    
+    
+    public void showInstanceMessage() {
+        System.out.println(instanceMessage);
+        System.out.println(staticMessage); // O
+        StaticExam.showStaticMessage(); // O
+    }
+
+    public static void showStaticMessage() {
+        System.out.println(staticMessage);
+        //System.out.println(instanceMessage);  X
+        //this.showStaticMessage();  X
+        new StaticExam().showInstanceMessage(); // O
+    }
+
+}
+```
 
 ### Reference
 
