@@ -169,3 +169,144 @@ public class Developer extends Employee{
     }
 }
 ```
+
+## 메소드 재정의(overriding)
+
+### 개요
+- 메소드 재정의(overriding)는 부모 클래스의 메소드를 자식 클래스가 확장하거나 다시 정의하는 것을 의미한다.
+- 메소드 재정의를 구현하는 방법은 부모 클래스로부터 상속받은 **메소드의 반환타입, 메소드명, 파라미터를 동일하게** 하여  
+  자식 클래스에서 정의한다.
+- 자식 클래스가 부모 클래스의 메소드를 재정의 할 때 접근 지정자의 범위는 **넓거나 같아야** 한다.
+
+
+| 부모 클래스           |           자식 클래스           |
+|:-----------------|:--------------------------:|
+| private          |           재정의 불가           |
+| protected        |     protected, public      |
+| package(default) | package, protected, public |
+| public           |           public          |
+
+```java
+class Shape {
+    
+    public void draw(){
+        System.out.println("Drawing Shape~");
+    }
+}
+
+public class Rectangle extends Shape{
+
+    @Override
+    public void draw() {
+        System.out.println("Drawing Rectangle~");
+    }
+}
+```
+
+### super
+- 메소드 재정의는 부모 클래스로부터 상속 받은 기능을 새롭게 변경하거나 확장하기 위해서 입니다.
+- 자식 클래스에서 상속 받은 메소드의 기능을 확장하기 위해서는 부모 클래스의 메소드에 대한 호출이 필요하다.
+- 자식 클래스가 부모 클래스의 구성 요소에 접근하기 위해서는 super 키워드를 이용한다.
+
+```java
+class Shape {
+    
+    public void draw(){
+        System.out.println("Drawing Shape~");
+    }
+}
+
+public class Rectangle extends Shape{
+
+    @Override
+    public void draw() {
+        super.draw();
+        System.out.println("Drawing Rectangle~");
+    }
+
+    public static void main(String[] args) {
+        Shape shape = new Shape();
+        shape.draw();
+
+        System.out.println();
+
+        Shape rect = new Rectangle();
+      rect.draw();
+    }
+}
+```
+
+``` console
+Drawing Shape~
+
+Drawing Shape~
+Drawing Rectangle~
+```
+
+## 객체간 타입 형변화
+### Strongly typed language
+- Strongly typed language 개념은 데이터의 타입을 미리 정의하고 사용 하고, 한번 정의된 데이터 타입은 프로그램 종료 까지  
+  변하지 않는 것을 의미한다.
+- 이 개념은 프로그램 개발에 있어 명확함과 구체성을 제공하며 많은 프로그램 언어들이 적용하고 있다.
+- 다만, 프로그램의 유연성 제약이라는 단점을 갖고 있으며 반대의 개념이 Loosely typed language 이다.
+
+``` java
+int x = 10; // assign
+int y = 20; // assign
+
+public void sum(int x, int y) {
+    ...
+}
+```
+
+- 자바에서 예외적으로 Strongly typed language가 적용되지 않는 경우가 있다.
+- 상속 관계에서 자식 클래스가 부모 클래스 타입으로 참조되는 것이 허용되며 이를 uo-casting이라고 한다.
+- 한번 부모 클래 타입의 클래스로 참조가 이러우진 이후 다시 자식 클래스로 참조하는 것을 down-casting이라고 한다.
+
+```java
+public class Shape {
+
+    public void draw(){
+        System.out.println("Drawing Shape~");
+    }
+}
+``` 
+
+```java
+public class Rectangle extends Shape{
+
+    @Override
+    public void draw() {
+        super.draw();
+        System.out.println("Drawing Rectangle~");
+    }
+}
+```
+```java
+public class Ellipse extends Shape{
+
+    @Override
+    public void draw() {
+        System.out.println("Drawing Ellipse~");
+    }
+}
+```
+```java
+public class Line extends Shape{
+
+    @Override
+    public void draw() {
+        System.out.println("Drawing Line~");
+    }
+}
+```
+```java
+public class InheritanceAssist {
+
+    public static void main(String[] args) {
+        Shape shape = new Rectangle(); // up-casting
+        Rectangle rect = (Rectangle) shape; // down-casting
+    }
+}
+```
+![](https://github.com/dididiri1/java_basic/blob/main/study/images/03_01.png?raw=true)
