@@ -309,4 +309,67 @@ public class InheritanceAssist {
     }
 }
 ```
+
+## 3.7 Object 클래스
+
+### 개요
+- Object 클래스는 모든 자바 클래스가 상속하는 최상위 클래스 이다.
+- Object 클래스는 모두 11개의 메소드를 정의하고 있으며 이 메소드들은 자바의 모든 클래스가 갖는 기능이다.
+- 자바의 모든 클래스가 상속 받아 갖는 Object 클래스 메소드에 대한 목적과 기능을 이해하는 것이 중요하다.
+- Object 클래스를 통해 상속 받는 메소드의 의미를 이해해야 그 의미에 맞게 재정의 할 수 있다.
+
+``` java
+public class EmptyClass {
+    
+}
+```
+``` java
+public vlass ObjectExam {
+    
+    public static void main(String[] args) {
+        EmptyClass empty = new EmptyClass();
+        empty.toString();
+        empty.hashCode();
+    }
+    
+}
+```
+
+### toString 메소드
+- toString 메소드는 해당 클래스에 대한 설명을 문자열 타입으로 반환하는 메소드 이다.
+- 자바의 모든 클래스는 스스로에 대한 정보를 읽기 쉬운 형태로 제공 할 수 있으며 이 기능이 toString() 메소드 이다.
+- 클래스를 정의할 때 그 클래스를 나타내는 주요 정보를 이용해 toString() 메소드를 재정의 한다.
+
+``` java
+public class Person {
+
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Name:" + name + ", " + "Age:" + age;
+    }
+}
+```
+``` java
+public class ObjectExam {
+
+    public static void main(String[] args) {
+        Person person = new Person("Kim", 25);
+        System.out.println(person.toString());
+    }
+}
+``` 
+
+``` console
+Name:Kim, Age:25
+```
+
+
 ![](https://github.com/dididiri1/java_basic/blob/main/study/images/03_01.png?raw=true)
