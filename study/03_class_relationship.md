@@ -312,7 +312,7 @@ public class InheritanceAssist {
 
 ## 3.7 Object 클래스
 
-### 개요
+### Object 클래스 - 개요
 - Object 클래스는 모든 자바 클래스가 상속하는 최상위 클래스 이다.
 - Object 클래스는 모두 11개의 메소드를 정의하고 있으며 이 메소드들은 자바의 모든 클래스가 갖는 기능이다.
 - 자바의 모든 클래스가 상속 받아 갖는 Object 클래스 메소드에 대한 목적과 기능을 이해하는 것이 중요하다.
@@ -335,7 +335,7 @@ public vlass ObjectExam {
 }
 ```
 
-### toString 메소드
+### Object 클래스 - toString 메소드
 - toString 메소드는 해당 클래스에 대한 설명을 문자열 타입으로 반환하는 메소드 이다.
 - 자바의 모든 클래스는 스스로에 대한 정보를 읽기 쉬운 형태로 제공 할 수 있으며 이 기능이 toString() 메소드 이다.
 - 클래스를 정의할 때 그 클래스를 나타내는 주요 정보를 이용해 toString() 메소드를 재정의 한다.
@@ -371,5 +371,71 @@ public class ObjectExam {
 Name:Kim, Age:25
 ```
 
+### Object 클래스 - euqals, hashCode 메소드
+- 자바의 모든 클래스는 비교가 가능해야 하며, 비교는 해당 클래스의 속성을 기준으로 한다.
+- 자바에서 비교는 동일(identity) 비교와 동등(equality) 비교로 구분 된다.
+- equals() 메소드는 인스턴스 객체와 파라미터로 전달되는 객체를 같은지 비교하여 결과를 반환한다.
+- hashCode() 메소드는 객체를 식별하는 정수값을 의미하며 정수값을 반환하는 메소드이다.
 
-![](https://github.com/dididiri1/java_basic/blob/main/study/images/03_01.png?raw=true)
+``` java
+import java.util.Objects;
+
+public class Person {
+
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Person)) return false;
+        Person person = (Person) o;
+        return Objects.equals(name, person.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+}
+``` 
+
+### Object 클래스 - clone 메소드 [1/2]
+- clone() 메소드는 인스턴스 객체의 복제를 위한 메소드로 해당 인스턴스 객체를 복사하여 그 참조값을 반환한다.
+- 클래스의 복제를 가능하게 하기 위해서는 Cloneable 인터페이스를 재정의 해야 한다.
+- Cloneable 인터페이스를 구현(implements) 하지 않은 클래스의 인스턴스의 clone() 메소드를 호출하면  
+  CloneNotSupportedException 예외가 발생한다.
+
+``` java
+public class User implements Cloneable {
+
+    private  String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException{
+        return super.clone();
+    }
+}
+```
+### Object 클래스 - clone 메소드 [2/2]
+- 객체의 복사는 단순히 같은 참조 정보를 복사하는 형태와 동일한 객체의 인스턴스를 복사하는 것의 차이를 이해해야 한다.
+- Object 클래스의 clone() 메소드는 protected 접근 권한을 갖고 잇으며 이를 재정의하는 클래스를 이를 public 접근  
+  권한으로 재정의하여 어디서나 복제가 가능하도록 한다.
+- 객체의 복제는 얕은 복제(Shallow Copy), 깊은 복제(Deep Copy)가 있으며 이를 유의한다.
+
+![](https://github.com/dididiri1/java_basic/blob/main/study/images/03_02.png?raw=true)
+
+
