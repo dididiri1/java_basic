@@ -439,3 +439,43 @@ public class User implements Cloneable {
 ![](https://github.com/dididiri1/java_basic/blob/main/study/images/03_02.png?raw=true)
 
 
+## 추상 클래스와 인터페이스
+
+### 추상 클래스(abstract class)의 이해
+- 추상 클래스는 하나 이상의 추상 메소드(absract method)를 갖는 클래스 이다.
+- 상속 관계에서 부모 클래스의 역활을 갖기 위한 클래스이며 추상 메소드와 일반 메소드를 가질 수 있다.
+- 추상 메소드는 메소드의 몸체(body)가 없는 메소드이며 자식 클래스에서 재정의 하도록 하기 위한 메소드 이다.
+- 추상 클래스는 new 동적 할당자를 통해 인스턴스 객체를 만들 수 없다.
+
+``` java
+abstract class Shape {
+
+    private String type;
+
+    public Shape(){
+        System.out.println("부모 초기화");
+    }
+
+    public Shape(String type) {
+        this.type = type;
+    }
+
+    public abstract  void draw();
+}
+
+public class AbstractAssist extends Shape {
+
+    @Override
+    public void draw() {
+        System.out.println("재정의!");
+    }
+    
+}
+```
+
+### 인터페이스(Interface)의 이해
+- 인터페이스는 일반적으로 추상 메소드만 가지며 interface 키워드를 이용해 정의한다.
+- 특정 클래스가 인터페이스를 구현하기 위해서는 implements 키워드를 통해 구현한다.
+- 상속과 달리 인터페이스는 하나의 클래스가 둘 이상의 인터페이스를 동시에 구현할 수 있다.
+- 인터페이스를 통해 설계와 구현을 완전히 분리할 수 있다.
+
