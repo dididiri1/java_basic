@@ -473,9 +473,50 @@ public class AbstractAssist extends Shape {
 }
 ```
 
-### 인터페이스(Interface)의 이해
-- 인터페이스는 일반적으로 추상 메소드만 가지며 interface 키워드를 이용해 정의한다.
+### 인터페이스(Interface)의 이해 - 개요
+- 인터페이스는 일반적으로 **추상 메소드**만 가지며 interface 키워드를 이용해 정의한다.
 - 특정 클래스가 인터페이스를 구현하기 위해서는 implements 키워드를 통해 구현한다.
 - 상속과 달리 인터페이스는 하나의 클래스가 둘 이상의 인터페이스를 동시에 구현할 수 있다.
 - 인터페이스를 통해 설계와 구현을 완전히 분리할 수 있다.
 
+``` java
+public interface IBehavior {
+    
+    // public abstract 생략 가능
+    public abstract void play();
+}
+```
+``` java
+public class Soccer extends Sport implements IBehavior {
+
+    @Override
+    public void play() {
+        System.out.println("Playing Soccer~~");
+    }
+}
+``` 
+
+### 인터페이스(Interface)의 이해 - 특징
+- 인터페이스에는 필드, 추상메소드, static 메소드, default 메소드를 정의할 수 있다.
+- 인터페이스에 정의하는 모든 필드는 public static fianl(사용자 정의 상수)이 자동으로 적용된다.
+- java 8부터 인터페이스에 static 메소드를 추가할 수 있으며 static 메소드의 사용은 일반 클래스와 동일하다.
+- java 8부터 default 메소드가 추가되었으며 이 메소드는 그 자체로 완전한 메소드이며 구현 클래스는 선택적으로 재정의할 수 있다.
+
+``` java
+public interface MyInterface {
+
+    // public static final 생략 가능
+    public static final String MESSAGE = "User define constant";
+    
+    default void defaultMethod(){
+        System.out.println("Default Method~~");
+    }
+    
+    public static void staticMethod(){
+        System.out.println("Static Method~~");
+    }
+    
+    // 추상메소드는 반드시 재정의됨.
+    public abstract void play();
+}
+```
