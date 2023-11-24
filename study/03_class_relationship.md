@@ -533,3 +533,106 @@ public interface MyInterface {
 - 클래스와 클래스 사이에 인터페이스를 구성하면 직접적인 접근이 없는 느슨한 관계를 구성할 수 있다.
 
 ![](https://github.com/dididiri1/java_basic/blob/main/study/images/03_03.png?raw=true)
+
+> final 클래스 상속 금지!
+> final 메소드 재정의 금지!
+> 
+
+## 3.11 배열
+
+### 배열[1/4]
+
+#### 배열은 동일한 타입의 값들을 저장할 수 있는 자료구조이다.
+#### 배열에 담기는 각각의 값들은 인섹스 번호를 통해 접근할 수 있다.
+#### 배열의 선언
+- 문법: 배열 요소의 타입[] 배열명;
+- 선언 예 : int[] a; 또는 int a[];
+
+
+#### 배열의 생성
+- 문법 : 변수명 = new 배열 요소의 타입[요소 수];
+- 배열 나타내는 변수에 새로운 배열을 생성하여 할당한다.
+  - int[] a;
+  - a = new int[100];
+#### 배열 선언과 동시에 새로운 배열을 생성할 수도 있다.
+  - int[] a = new int[100];
+
+
+### 배열[2/4]
+
+#### 배열 초기화
+- 자바는 배열 생성과 동시에 값을 초기활 수 있는 문법을 제공한다. (배열 선언 시에만 사용)
+``` java
+int[] months = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+
+int[] months;
+months = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}; (x)
+``` 
+
+#### 배열 복사
+- 배열 변수를 복사하는 경우, 참조변수만 복사되어 실제로는 두 변수가 동일한 배열을 참조한다.
+``` java
+int[] a = new int[5];
+int[] b = a;
+b[0] = 5; // a[0]의 값도 변경된다.
+``` 
+- Arrays.copyOf() 메소드는 배열의 내용까지 복사한다.
+``` java
+int[] copy = Arrays.copyOf(a, a.length);
+``` 
+- 배열 복사와 동시에 배열의 크기를 늘릴 수 있다.
+``` java
+int[] copyDoubleSize = Arrays.copyOf(a, 2 * a.length);
+``` 
+
+### 배열[3/4]
+#### 배열 정렬(Sorting)
+- Arrays.sort() 메소드는 배열 내부의 요소(element)를 정렬 한다.  
+``` java
+import java.util.Arrays;
+
+public class ArraySortTest {
+
+    public static void main(String[] args) {
+        int[] a = {2, 8, 6, 3, 1, 10};
+        Arrays.sort(a);
+
+        System.out.println(Arrays.toString(a));
+    }
+}
+
+``` 
+``` console
+[1, 2, 3, 6, 8, 10]
+``` 
+
+#### 다차원 배열
+``` java
+double[][] balances;
+balances = new double[12][10];
+int[][] matrix = {
+              {1, 5, 2, 8},
+              {2, 7, 1, 9},
+              {7, 2, 6, 2},
+              {9, 1, 4, 8}
+          };
+
+``` 
+
+### 배열[4/4]
+- 배열과 같이 집합을 나타내는 자료형은 요소를 반복하기 위하여 반복문을 사용한다.
+- 배열 요소의 인덱스 값은 0부터 시작한다.
+- for each 문은 집합의 요소를 처음부터 끝까지 반복 한다.
+
+``` java
+int arr[] = {1, 5, 2, 8};
+
+// 확장 for문
+for (int num : arr) {
+    System.out.println(num);
+}
+
+for (int i = 0; i < arr.length; i++) {
+    System.out.println(arr[i]);
+}
+``` 
