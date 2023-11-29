@@ -83,4 +83,10 @@ true
 
 Java Programming
 ```
-  
+
+### 문자열 클래스 - StringBuilder, StringBuffer 클래스
+- StringBuilder와 StringBuffer 클래스는 동기화(syschronized) 특성을 제외하고 모든 메소드의 기능이 동일하다.
+- 이 두 클래스는 String 클래스와 달리 가변(mutable)의 특성을 갖고 있다.
+- StringBuilder, StringBuffer 두 클래스는 AbstractStringBuilder 추상 클래스를 상속하고 있으며 이 클래스는 내부 적으로  
+  문자열 관리하기 위한 byte[]과 배열의 길이를 계산히기 위한 count 속성을 갖고 있다.
+- 
