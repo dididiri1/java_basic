@@ -89,4 +89,28 @@ Java Programming
 - 이 두 클래스는 String 클래스와 달리 가변(mutable)의 특성을 갖고 있다.
 - StringBuilder, StringBuffer 두 클래스는 AbstractStringBuilder 추상 클래스를 상속하고 있으며 이 클래스는 내부 적으로  
   문자열 관리하기 위한 byte[]과 배열의 길이를 계산히기 위한 count 속성을 갖고 있다.
-- 
+
+
+### 문자열 클래스 - StringBuilder, StringBuffer 클래스의 차이
+- StringBuilder 클래스와 StringBuffer 클래스의 유일한 차이는 동기화 처리 여부이다.
+- StringBuffer 클래스는 멀티스레드(Multi Thread) 프로그램에서 데이터에 대한 동기화 문제가 발생하지 않도록 대두분의  
+  메소드에서 동기화 처리를 하고 있다.
+- 이런 동기화 처리 과정은 성능에 영향을 주기 때문에 단일스레드(Single Thread) 프로그램에서는 StringBuilder 클래스를 사용한다.
+
+### 문자열 클래스 - + 연산자
+- 자바의 + 연산자는 피연산자 문자열일 경우 두 피연산자을 문자열로 연결해 주는 기능을 갖고 있다.
+- 문자열의 연결은 String 클래스의 concat(), StringBuilder 클래스의 append()와 동일한 기능이다.
+- java 8까지 문자열에 대한 + 연산은 StringBuilder 클스의 append() 기능을 이용해 수행한다.
+- java 9부터 StringConcatFactory라는 새로운 클래스의 기능을 이용해 문자열에 대한 + 연산을 진행한다.
+
+``` java
+String str = new String("Java");
+str = str.concat("Programming");
+str = str + "Programming";
+```
+
+### Wrapper 클래스(1/2) - Wrapper 클래스의 이해
+- 자바프로그램에서 관리하는 데이터의 기본 단위는 객체이다.
+- 자바에서는 int, double 등과 같은 기본 데이터 타입(Primitive Data Type)들은 객체로 관리 할 수 있도록 하는 클래스들을  
+  제공하며 이 클래스들을 Wrapper 클래스라고 한다.
+- Wrapper 클래스들은 기본 데이터 타입에 대한 객체화와 함께 다양한 기능들을 정의하고 있다.
