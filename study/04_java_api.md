@@ -114,3 +114,38 @@ str = str + "Programming";
 - 자바에서는 int, double 등과 같은 기본 데이터 타입(Primitive Data Type)들은 객체로 관리 할 수 있도록 하는 클래스들을  
   제공하며 이 클래스들을 Wrapper 클래스라고 한다.
 - Wrapper 클래스들은 기본 데이터 타입에 대한 객체화와 함께 다양한 기능들을 정의하고 있다.
+
+
+
+| Primitive Type           |           Wrapper Class           |
+|:-----------------|:--------------------------:|
+| boolean          |           Boolean           |
+| byte          |           Byte           |
+| short          |           Short           |
+| int          |           Integer           |
+| char          |           Character           |
+| long          |           Long           |
+| float          |           Float           |
+| double          |           Double           |
+
+
+### Wrapper 클래스(2/2) - Auto Boxing, Unboxing
+- 기본 데이터 타입을 Wrapper 클래스로 감싸거나 Wrapper 클래스가 갖고 있는 기본 데이터 타입을 다시 꺼내는 과정은  
+  Auto Boxing, Unboxing 기능을 통해 손쉽게 구현할 수 있다.
+``` java
+Integer intWrap = Integer.valueOf(10);
+int number = intWrap.intValue();
+
+Integer intWrap = 10; // Auto Boxing
+int number = intWrap; // Unboxing
+``` 
+
+- Wrapper 이외에도 실수 계산과 같은 오차가 발생할 수 있는 연산에는 BigInterger, BigDecimal과 같은 클래스의 기능을 사용한다.
+``` java
+double da = 3.14;
+System.out.println(da + 1); // 4.140000000000001
+
+System.out.println(BigDecimal.valueOf(3.14).add(BigDecimal.valueOf(1))); // 4.14
+```
+
+### Java Collection Framework의 이해(1/3)
