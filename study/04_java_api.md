@@ -149,3 +149,25 @@ System.out.println(BigDecimal.valueOf(3.14).add(BigDecimal.valueOf(1))); // 4.14
 ```
 
 ### Java Collection Framework의 이해(1/3)
+- java Collection Framework는 객체들을 관리하기 위해 사용하는 컨터에너 클래스들의 집합이다.
+- 컨테이너 클래스들의 종류는 크게 List, Set, Queue, Map 계열로 구분한다.
+- 각 계열에 따라 객체들을 저장하고 관리하는 방식에 차이가 있다.
+- 컬렉션 프레임워크 클래스들을 잘 활용하기 위해서는 각 클래스들의 특징과 저장 방식에 대한 이해가 필요힘.
+
+### Java Collection Framework의 이해(2/3)
+#### 컬렉션 관련 인터페이시들과 클래스들은 java.utll.* 패키지(pacckage)에 포함되어 있다.
+- Collection interface : 순서 없는 객체들의 집합이다.
+- List interface : 순차적 나열로 순서 지정이 가능한 객체들의 집합이다.
+- Set interface : 중복을 허용하지 않는 객체들의 집합이다.
+- Queue interface : FIFO(First In First Out) 처음 저장하는 객체가 가장 먼저 나오는 구조의 집합이다.
+- Map : 키와 그 키에 대응하는 객체들로 이루어진 집합이다.
+
+![](https://github.com/dididiri1/java_basic/blob/main/study/images/04_01.png?raw=true)
+
+### Java Collection Framework의 이해(3/3)
+#### 저장 관리 하고자 하는 객체들의 특성에 따라 사용할 컬렉션 클래스를 선택한다.
+#### 컬렉션 클래스를 선택할 때 필요한 대표적인 고려사항은 다음과 같다,
+- 저장 객체의 추가, 삭제와 같은 데이터의 변경이 자주 발생 하는지
+- 저장 객체의 빠른 탐색이 최우선인지 필요한지
+- 저장 메모리를 최대한 효율적으로 사용하고자 하는지
+
