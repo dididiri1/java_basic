@@ -171,3 +171,35 @@ System.out.println(BigDecimal.valueOf(3.14).add(BigDecimal.valueOf(1))); // 4.14
 - 저장 객체의 빠른 탐색이 최우선인지 필요한지
 - 저장 메모리를 최대한 효율적으로 사용하고자 하는지
 
+
+### 제네릭의 이해(1/2) - 개요제네릭의 이해(1/2) - 개요
+- 제네릭(Generic)은 java 5에서 추가된 기능으로 특히 객체를 수집, 관리하는 컬렉션을 이용할 떄 반드시 사용한다.
+- 제네릭을 사용하면 데이터를 저장하는 시점에 어떤 데이터를 저장할 것인지 명시할 수 있다.
+- 이를 통해 사용하고자 하는 데이터의 타입을 명확히 선언할 수 있고, 정확한 데이터의 사용 여부를 컴파일 시점에 확인할 수 있다,
+
+``` java
+public class Box<T> {
+
+    private T item;
+    
+    public Box(T item){
+        this.item = item;
+    }
+    
+    public T getItem(){
+        return item;
+    }
+}
+```
+``` java
+Box<Apple> box = new Box(new Apple(10));
+Apple apple = box.getItem();
+System.out.println(apple.getSugarContent());
+``` 
+
+### 제네릭의 이해(2/2) - 제네릭과 컬렉션
+- Object 클래스는 최상위 클래스로서 java의 모든 클래스를 참조 할 수 있다.
+- 모든 클래스를 참조 할 수 있다는 것은 분명 편리할 수 있지만 오류를 발생시킬 수 있는 여지 또한 크다.
+- 예를 들어, Object 배열에 다양한 객체의 참조를 넣었을 때를 생각해 볼 수 있다.
+- 객체의 구분없이 배열을 담을 수 있다는 것은 담을 떄의 편리성은 있지만 다시 꺼낼 때는 문제가 발생한다.
+- 
