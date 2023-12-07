@@ -164,6 +164,14 @@ System.out.println(BigDecimal.valueOf(3.14).add(BigDecimal.valueOf(1))); // 4.14
 
 ![](https://github.com/dididiri1/java_basic/blob/main/study/images/04_01.png?raw=true)
 
+| Primitive Type           |            Wrapper Class            | Wrapper Class                                                                         |
+|:-----------------|:-----------------------------------:|:--------------------------------------------------------------------------------------|
+| Set          |         HashSet<br/>TreeSet         | 순서를 유지하지 않는 데이터의 집합으로 데이터의 중복을 허용하지 않는다.                                              |
+| List          | LinkedList<br/>Vector<br/>ArrayList | 순서가 있는 데이터의 집합으로 데이터의 중복을 허용한다.                                                       |
+| Queue          |    LinkedList<br/>PriorityQueue     | List와 유사                                                                              |
+| Map          |  Hashtable<br/>HashMap<br/>TreeMap  | 키(Key), 값(Value)의 쌍으로 이루어진 데이터으 집합으로,<br/> 순서는 유지되지 않으며 키(Key)의 중복을 허용하지 않으나 값(Value)의 중복은 허용한다. |
+
+
 ### Java Collection Framework의 이해(3/3)
 #### 저장 관리 하고자 하는 객체들의 특성에 따라 사용할 컬렉션 클래스를 선택한다.
 #### 컬렉션 클래스를 선택할 때 필요한 대표적인 고려사항은 다음과 같다,
@@ -202,4 +210,27 @@ System.out.println(apple.getSugarContent());
 - 모든 클래스를 참조 할 수 있다는 것은 분명 편리할 수 있지만 오류를 발생시킬 수 있는 여지 또한 크다.
 - 예를 들어, Object 배열에 다양한 객체의 참조를 넣었을 때를 생각해 볼 수 있다.
 - 객체의 구분없이 배열을 담을 수 있다는 것은 담을 떄의 편리성은 있지만 다시 꺼낼 때는 문제가 발생한다.
-- 
+
+### Collection 인터페이스(1/2)
+#### java.util.Collection 인터페이스
+- 컬렉션 프레임워크의 최상위 인터페이스 이다.
+- 요소(객체)에 대한 삽입, 삭제, 탐색의 기능을 정의한다.
+
+#### 주요 메소드
+- add() : 새로운 요소를 삽입한다. 중복 요소를 허용하지 않는 경우 false를 반환함.
+- clear() : 모든 요소를 제거한다.
+- contains() : 파라미터로 전달되는 객체가 요소로 존재하는지 반환함.
+- isEmpty() : 해당 컬렉션이 포함하고 있는 요소가 0인지를 반환함.
+- remove() : 파라미터로 전달되는 객체를 제거한다. 전달되는 객체가 요소로 존재하지 않다면 false를 반환함.
+- size() : 현재 포함하고 있는 요소의 개수를 반환한다.
+- iterator() : 해당 컬렉션이 포함하고 있는 요소들을 순회하기 위한 iterator 객체를 반환한다.
+#### Java 8 버전 이후 Stream 관련 디폴트 메소드들이 추가 되었다.
+
+### Collection 인터페이스(2/2)
+#### java.util.Collection 추가 기능과 같은 주요 메소드는 다음과 같다.
+- addAll() : 파라미터로 전달되는 컬렉션의 모든 요소를 추가한다.
+- containsAll() : 파라미터로 전달되는 컬렉션의 모든 요소를 현재 포함하고 있다면 true를 반환한다.
+- removeAll() : 파라미터로 전달되는 컬렉션의 요소들과 일치하는 요소들을 모두 제거한다.
+- retainAll() : 파라미터로 전달되는 컬렉션의 요소들과 일치하지 않는 요소들을 모두 제거한다.
+
+![](https://github.com/dididiri1/java_basic/blob/main/study/images/04_02.png?raw=true)
