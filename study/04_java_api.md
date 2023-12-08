@@ -164,12 +164,12 @@ System.out.println(BigDecimal.valueOf(3.14).add(BigDecimal.valueOf(1))); // 4.14
 
 ![](https://github.com/dididiri1/java_basic/blob/main/study/images/04_01.png?raw=true)
 
-| Primitive Type           |            Wrapper Class            | Wrapper Class                                                                         |
-|:-----------------|:-----------------------------------:|:--------------------------------------------------------------------------------------|
-| Set          |         HashSet<br/>TreeSet         | 순서를 유지하지 않는 데이터의 집합으로 데이터의 중복을 허용하지 않는다.                                              |
-| List          | LinkedList<br/>Vector<br/>ArrayList | 순서가 있는 데이터의 집합으로 데이터의 중복을 허용한다.                                                       |
-| Queue          |    LinkedList<br/>PriorityQueue     | List와 유사                                                                              |
-| Map          |  Hashtable<br/>HashMap<br/>TreeMap  | 키(Key), 값(Value)의 쌍으로 이루어진 데이터으 집합으로,<br/> 순서는 유지되지 않으며 키(Key)의 중복을 허용하지 않으나 값(Value)의 중복은 허용한다. |
+| 인터페이스 |                구현클래스                | 특징                                                                                               |
+|:------|:-----------------------------------:|:-------------------------------------------------------------------------------------------------|
+| Set   |         HashSet<br/>TreeSet         | 순서를 유지하지 않는 데이터의 집합으로 데이터의 중복을 허용하지 않는다.                                                         |
+| List  | LinkedList<br/>Vector<br/>ArrayList | 순서가 있는 데이터의 집합으로 데이터의 중복을 허용한다.                                                                  |
+| Queue |    LinkedList<br/>PriorityQueue     | List와 유사                                                                                         |
+| Map   |  Hashtable<br/>HashMap<br/>TreeMap  | 키(Key), 값(Value)의 쌍으로 이루어진 데이터으 집합으로,<br/> 순서는 유지되지 않으며 키(Key)의 중복을 허용하지 않으나 값(Value)의 중복은 허용한다. |
 
 
 ### Java Collection Framework의 이해(3/3)
@@ -234,3 +234,31 @@ System.out.println(apple.getSugarContent());
 - retainAll() : 파라미터로 전달되는 컬렉션의 요소들과 일치하지 않는 요소들을 모두 제거한다.
 
 ![](https://github.com/dididiri1/java_basic/blob/main/study/images/04_02.png?raw=true)
+
+### List 인터페이스(1/5) - 개요
+- List 계열의 컬렉션은 저장 요소를 순차적으로 관리하며 중복된 값과 null 값을 요소로 가질 수 있다.
+- 요소에 대한 접근은 배열과 마찬가지로 인덱스(index)를 통해 접근한다.
+- 배열 자료구조 형태로 데이터를 저장할 때 저장 데이터의 특성에 따라 적절한 List 계열의 클래스들을 활용한다.
+- List 인터페이스를 구현한 대표클래스는 ArrayList, LinkedList, Vector 클래스가 있다.
+
+### List 인터페이스(2/5) - ArrayList 클래스(1/2)
+- ArrayList 클래스는 내부에 배열을 갖고 있다. 따라서 고정 길이 저장 공간으로 요소들을 관리한다.
+- ArrayList 클래스의 내부 배열이 요소를 담을 수 있는 용량을 capacity라고 한다.
+- 내부 배열의 용량(capacity)을 넘어 요소를 저장할 경우 내부적으로 용량을 늘린 새로운 배열을 만들어 요소를 담는다.
+- 요소에 대한 접근은 배열과 마찬가지로 인덱스(index)를 통해 접근한다.
+
+### List 인터페이스(3/5) - ArrayList 클래스(2/2)
+- ArrayList는 순차적으로 요소를 저장할 수 있는 메소드와 인덱스를 통해 저장할 수 있는 add() 메소드를 제공한다.
+- 특정 인덱스에 요소를 저장할 경우 기존에 저장된 요소들의 이동이 내부적으로 이루어진다.
+- 특정 요소를 삭제하기 위해서는 해당 요소의 인데스가 필요하며 이 경우에도 저장된 요소들의 이동이 발생한다.
+- ArrayList가 갖는 이와 같은 특징(용량, 요소의 이동)은 추가, 삭제가 빈번한 데이터의 관리에는 적합하지 않는다.
+
+### ArrayList 클래스의 주요 메소드
+| 메서드           |                  설명                  |
+|:-----------------|:------------------------------------:|
+| boolean add(E e)          |  요소 하나를 배열에 추가한다(E는 요소의 자료형을 의미한다.)  | 
+| int size()          |       배열에 추가된 요소 전체 개수를 반환한다.        |   
+| E get(int index)          |     배열의 index위치에 있는 요소 값을 반환한다.      | 
+| E remove(int index)          | 배열의 index위치에 있는 요소 값을 제거하고 그 값을 반환한다 | 
+| boolean isEmpty()          |           배열이 비어 있는지 확인한다.           | 
+
