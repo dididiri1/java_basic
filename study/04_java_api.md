@@ -262,3 +262,53 @@ System.out.println(apple.getSugarContent());
 | E remove(int index)          | 배열의 index위치에 있는 요소 값을 제거하고 그 값을 반환한다 | 
 | boolean isEmpty()          |           배열이 비어 있는지 확인한다.           | 
 
+### List 인터페이스(4/5) - LinkedList 클래스(1/2)
+- LinkedList 클래스는 집합하는 각 요소들을 노드(node)로 표현하고, 각 노드들을 서로 연결하여 리스트를 구성한다.
+- 요소를 갖는 각 노드들은 다음 노드에 대한 참조 정보를 통해 접근한다.
+- 노드는 필요한 경우 만들어서 연결하여 사용하기 때문에, 미리 정의된 용량(capacity)의 개념이 없다.
+- List 인터페이스를 구현한 다른 클래스들과 마찬가지로 인덱스를 통해 요소에 접근한다.
+
+
+### List 인터페이스(5/5) - LinkedList 클래스(2/2)
+- 요소의 추가는 곧 노드의 추가를 의미하며, 일반적인 추가(add)는 순차적으로 링크를 연결하며 추가한다.
+- 인덱스를 지정해 특정 지점에 요소를 추가할 경우에는 기존 노드의 연결을 끊고 새로운 노드를 연결하여 추가한다.
+- 요소의 삭제는 삭제할 노드가 갖고 있는 다음 노드에 대한 포인트를 이전 노드가 포인트를 할 수 있도록 하여 삭제한다.
+- ArrayList와 달리 요소의 추가, 삭제에 대한 부하가 적은 반면 메모리의 사용은 더 많다는 특징을 갖는다.
+
+### Set 인터페이스(1/2) - 개요
+- Set 인터페이스를 구현한 컬렉션 클래스들의 가장 큰 특징은 저장하는 요소의 중복을 허용하지 않는다는 것이다,
+- Set 인터페이스의 구현 클래스들은 equals() 매소드를 이용해 저장 요소의 중복을 검사한다.
+- Set 인터페이스가 정의하고 있는 추상 메소드 중에는 단일 요소를 꺼내기 위한 get() 메소드가 존재하지 않는다.
+- Set 인터페이스를 구현한 주요 클래스는 HashSet, LinkedHashSet, TreeSet 등이 있다.
+
+![](https://github.com/dididiri1/java_basic/blob/main/study/images/04_03.png?raw=true)
+
+### Set 인터페이스(2/2) - 주요 클래스
+- Set 인터페이스의 구현체 HashSet은 집합 하는 요소의 중복을 허용하지 않고 입력 순서를 유지하지 않는다.
+- HashSet 클래스는 순서에 상관없이 어떤 데이터가 존재하는지의 여부를 확인하는 용도로 많이 사용된다.
+- 집합의 요소의 정렬이 필요할 경우 TreeSet이나 LinkedHashSet 클래스를 사용한다.
+- Set 계열의 클래스에서 전체 집합 요소를 순회하고자 할 경우 Iterator를 이용한다.
+
+``` java
+Random rand = new Random(47);
+Set<Integer> intSet = new HashSet<Integer>();
+
+for (int i = 0; i < 10000; i++) {
+    intSet.add(rand.nextInt(30));
+}
+
+System.out.println(intSet);
+``` 
+``` console
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 16, 19, 18, 21, 20, 23, 22, 25, 24, 27, 26, 29, 28]
+``` 
+
+### Map 인터페이스(1/2) - 개요
+- Map 인터페이스가 갖는 대표적인 특성은 요소를 저장하기 위해서는 유일한 키(key)와 함께 저장해야 한다는 것이다.
+- List, Set, Queue와 달리 Map 인터페이스는 Collection 인터페이스를 상속하지 않는다.
+- Map 인터페이스는 내부에 Entry 인터페이스를 가지고 있으며 Entry는 키와 값을 가진 객체의 순서 쌍이다.
+- Map 인터페이스의 주요 구현 클래스는 HashMap, LinkedHashMap, TreeMap 등이 있다.
+
+![](https://github.com/dididiri1/java_basic/blob/main/study/images/04_04.png?raw=true)
+
+### Map 인터페이스(2/2) - 주요 클래스
