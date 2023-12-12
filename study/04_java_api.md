@@ -312,3 +312,107 @@ System.out.println(intSet);
 ![](https://github.com/dididiri1/java_basic/blob/main/study/images/04_04.png?raw=true)
 
 ### Map 인터페이스(2/2) - 주요 클래스
+- HashMap에 요소를 저장하기 위해서는 키(key)와 값(value)이 필요하며 값의 중복이 가능하다.
+- HashMap 클래스는 저장되는 요소의 순서를 보장하지 않는다.
+- LinkedHashMap 클래스는 요소를 추가한 순서를 보장한다.
+- TreeMap 클래스는 요소의 키에 대한 정렬된 순서를 보장하며 이를 위해서는 키 객체가 Comparable 인터페이스를 구현하고 있어야 한다.
+
+``` java
+import java.util.HashMap;
+import java.util.Map;
+
+class Customer {
+
+    private String email;
+
+    private String name;
+
+    public Customer(String email, String name) {
+        this.email = email;
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}
+
+public class MapTest {
+    
+    public static void main(String[] args) {
+        Map<String, Customer> map = new HashMap<>();
+        Customer kim = new Customer("kim@namoosori.io", "Kim");
+
+        map.put(kim.getEmail(), kim);
+
+        System.out.println(map);
+    }
+}
+```
+``` java
+{kim@namoosori.io=Customer{email='kim@namoosori.io', name='Kim'}}
+```
+
+### Iterator 인터페이스
+- Iterator 인터페이스는 컬렉션 객체가 가지고 있는 요소들을 순회할 수 있는 기능들을 명세한 인터페이스 이다.
+- Collection 인터페이스를 구현한 클래스들은 iterator() 메소드를 통해 iterator 구현 객체를 반환 한다.
+- Map 구현 클래스의 경우 Map.values() 메소드를 통해 값(요소) 들을 Collection 타입으로 겍체를 반환 받은 이후에  
+  다시 iterator 구현 객체를 이용하여 순회할 수 있다.
+
+``` java
+import java.util.*;
+
+public class IteratorTest {
+
+    public static void main(String[] args) {
+
+        Iterator<Customer> iterator = null;
+        
+        List<Customer> list = new ArrayList<>();
+        list.add(new Customer("kim@namoosori.io", "Kim"));
+        list.add(new Customer("lee@namoosori.io", "Lee"));
+        list.add(new Customer("park@namoosori.io", "Park"));
+
+        iterator = list.iterator();
+        while (iterator.hasNext()) {
+            Customer customer = iterator.next();
+            System.out.println("customer = " + customer);
+        }
+
+        System.out.println();
+
+        Map<String, Customer> map = new HashMap();
+        map.put("kim@namoosori.io", new Customer("kim@namoosori.io", "Kim"));
+        map.put("lee@namoosori.io", new Customer("lee@namoosori.io", "Lee"));
+        map.put("park@namoosori.io", new Customer("park@namoosori.io", "Park"));
+        
+        Collection<Customer> coll = map.values();
+        iterator = coll.iterator();
+        while(iterator.hasNext()){
+            Customer customer = iterator.next();
+            System.out.println("customer = " + customer);
+        }
+    }
+}
+``` 
+``` java
+customer = Customer{email='kim@namoosori.io', name='Kim'}
+customer = Customer{email='lee@namoosori.io', name='Lee'}
+customer = Customer{email='park@namoosori.io', name='Park'}
+
+customer = Customer{email='lee@namoosori.io', name='Lee'}
+customer = Customer{email='park@namoosori.io', name='Park'}
+customer = Customer{email='kim@namoosori.io', name='Kim'}
+``` 
